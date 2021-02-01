@@ -1,5 +1,6 @@
 package com.vytrack.pages;
 
+import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.Driver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +20,12 @@ public class LoginPage {
 
     @FindBy(id = "_submit")
     public WebElement submitButton;
+
+    public void loginAsStoreManager(){
+        userNameInputBox.sendKeys(ConfigurationReader.get("storemanager_username"));
+        passwordInputBox.sendKeys(ConfigurationReader.get("storemanager_password"));
+        submitButton.click();
+    }
 
 
 }
