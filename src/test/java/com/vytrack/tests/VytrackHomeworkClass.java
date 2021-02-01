@@ -50,8 +50,30 @@ public class VytrackHomeworkClass extends TestBase {
         extentLogger.info("Verify the page number is 1");
         new DashboardPage().waitUntilLoaderScreenDisappear();
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
-        assertEquals(calendarEventsPage.pageNumber.getAttribute("value"), "2", "verify the page number");
+        assertEquals(calendarEventsPage.pageNumber.getAttribute("value"), "1", "verify the page number");
         extentLogger.pass("PASS: Page Number is equals to 1 Test");
 
+    }
+
+    @Test
+    public void viewPerPageTest(){
+        extentLogger = report.createTest("View Per Page equals to 25 Test");
+
+        LoginPage loginPage = new LoginPage();
+
+        extentLogger.info("username : " + ConfigurationReader.get("storemanager_username"));
+        extentLogger.info("password : " + ConfigurationReader.get("storemanager_password"));
+        extentLogger.info("login as a store manager");
+        loginPage.loginAsStoreManager();
+
+        extentLogger.info("go to the Activities ---> Calendar Events");
+        new DashboardPage().waitUntilLoaderScreenDisappear();
+        new DashboardPage().navigateToModule("Activities", "Calendar Events");
+
+        extentLogger.info("verify the view per page is 25");
+        new DashboardPage().waitUntilLoaderScreenDisappear();
+        assertEquals(new CalendarEventsPage().viewPerPage.getText(),"25","verify the view per page is 25");
+
+        extentLogger.pass("PASS: View Per Page equals to 25 Test");
     }
 }
