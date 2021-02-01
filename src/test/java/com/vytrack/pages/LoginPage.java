@@ -27,5 +27,4 @@ public class LoginPage {
         submitButton.click();
     }
 
-
 }
