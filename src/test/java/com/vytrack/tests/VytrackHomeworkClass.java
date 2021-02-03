@@ -98,6 +98,8 @@ public class VytrackHomeworkClass extends TestBase {
         extentLogger.info("find the number of the total rows on grid page by page");
         new DashboardPage().waitUntilLoaderScreenDisappear();
         BrowserUtils.waitFor(10);
+        extentLogger.info("verify the total row number equal to record number");
+
 
     }
 
