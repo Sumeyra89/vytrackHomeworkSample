@@ -5,11 +5,14 @@ import com.vytrack.pages.DashboardPage;
 import com.vytrack.pages.LoginPage;
 import com.vytrack.utilities.BrowserUtils;
 import com.vytrack.utilities.ConfigurationReader;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import static org.testng.Assert.*;
 
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 public class VytrackHomeworkClass extends TestBase {
 
@@ -101,9 +104,39 @@ public class VytrackHomeworkClass extends TestBase {
         extentLogger.info("verify the total row number equal to record number");
         CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
-        Assert.assertEquals(calendarEventsPage.getRecordNumber(),calendarEventsPage.totalRow());
+        Assert.assertEquals(calendarEventsPage.getRecordNumber(), calendarEventsPage.totalRow());
 
         extentLogger.info("PASS: Number of calendar events equal to number of records test");
+    }
+
+    @Test
+    public void calendarEventsSelectedTest() {
+        extentLogger = report.createTest("All calendar events were selected test");
+
+        LoginPage loginPage = new LoginPage();
+
+        extentLogger.info("username : " + ConfigurationReader.get("storemanager_username"));
+        extentLogger.info("password : " + ConfigurationReader.get("storemanager_password"));
+        extentLogger.info("login as a store manager");
+        loginPage.loginAsStoreManager();
+
+        extentLogger.info("go to the Activities ---> Calendar Events");
+        new DashboardPage().waitUntilLoaderScreenDisappear();
+        new DashboardPage().navigateToModule("Activities", "Calendar Events");
+
+        BrowserUtils.waitFor(5);
+        extentLogger.info("click to select all");
+        new CalendarEventsPage().allCheckBox.click();
+
+        extentLogger.info("Verify that all calendar events are selected");
+
+        List<WebElement> checkBoxes = new CalendarEventsPage().checkBoxes;
+
+        for (WebElement checkBox : checkBoxes) {
+            assertTrue(checkBox.isSelected());
+        }
+        extentLogger.pass("PASS: All calendar events were selected test");
+
     }
 
 }

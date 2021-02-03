@@ -28,6 +28,12 @@ public class CalendarEventsPage extends BasePage {
     @FindBy(xpath = "//label[@class='dib'][3]")
     public WebElement record;
 
+    @FindBy(xpath = "//button[@data-toggle='dropdown']/input[@type='checkbox']")
+    public WebElement allCheckBox;
+
+    @FindBy(xpath = "//tbody/tr/td[1]/input")
+    public List<WebElement>checkBoxes;
+
 
     public Integer getNumberOfPages() {
         String[] pages = numberOfPage.getText().split(" ");
@@ -45,7 +51,7 @@ public class CalendarEventsPage extends BasePage {
             totalRow += elements.size();
 
             nextPage.click();
-            BrowserUtils.waitFor(2);
+            BrowserUtils.waitFor(4);
 
         }
 
