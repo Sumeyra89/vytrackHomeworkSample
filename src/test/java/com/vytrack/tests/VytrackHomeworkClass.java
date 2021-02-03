@@ -99,8 +99,11 @@ public class VytrackHomeworkClass extends TestBase {
         new DashboardPage().waitUntilLoaderScreenDisappear();
         BrowserUtils.waitFor(10);
         extentLogger.info("verify the total row number equal to record number");
+        CalendarEventsPage calendarEventsPage = new CalendarEventsPage();
 
+        Assert.assertEquals(calendarEventsPage.getRecordNumber(),calendarEventsPage.totalRow());
 
+        extentLogger.info("PASS: Number of calendar events equal to number of records test");
     }
 
 }

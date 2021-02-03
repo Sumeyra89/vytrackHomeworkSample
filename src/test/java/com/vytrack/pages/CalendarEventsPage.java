@@ -53,5 +53,8 @@ public class CalendarEventsPage extends BasePage {
 
     }
 
-
+    public String getRecordNumber() {
+        String[] records = record.getText().split(" ");
+        return records[2];
+    }
 }
