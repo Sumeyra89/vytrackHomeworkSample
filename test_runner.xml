@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Vytrack Automation" verbose="1" >
+    <test name="Homework Execution"   >
+        <parameter name="env" value="qaxml"></parameter>
+        <classes>
+            <class name="com.vytrack.tests.VytrackHomeworkClass"></class>
+        </classes>
+    </test>
+</suite>
